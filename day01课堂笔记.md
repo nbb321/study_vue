@@ -26,17 +26,44 @@ body传参，json urlncode
 ###### 2.es5实现const
 
 const 可以使用defineProperty  修改描述符 
-
 (1).writable可读写 是否重写 默认true. true/false
+```
+eg:
+var obj={a:1};
+Object.defineProperty(obj,"a",{
+    writable:false //这样就不可以重新编写赋值了
+})
+```
 
- (2).enumerable     	可枚举  true/false(是否可以遍历)
- 
+ (2).enumerable 可枚举，是否(枚举)  true/false(是否可以遍历)
+ ```
+ eg:
+ Object.defineProperty(obj,"a",{
+    enumerable :false 
+})
+ ```
 (3).configurable        删除  true/false
+ ```
+ eg:
+ Object.defineProperty(obj,"a",{
+    configurable:false //这样就不可以删除了
+})
+ ```
 
 (4).value  值可以是任意类型，相当于赋值
+```
+eg:
+ Object.defineProperty(obj,"a",{
+  get(){
+      return "abc"
+  },
+  set(val){
+      console.log("val...",val)
+  }
+})
+```
 
 (5).get/set 获取和设置
- 箭头函数和bind来改变this指向
  
 ###### 3.es6通过构造函数来检测类型
 
