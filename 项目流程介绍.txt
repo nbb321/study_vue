@@ -1,0 +1,10 @@
+开发 联调 自测 提测 bug反馈
+
+联调：Reseful
+options  查
+get 相当于,增 （不能使用body）
+post 更新,改 
+delect删除  
+body传参，json urlncode
+
+可以bug 和项目管理 （禅道，Teambition）
