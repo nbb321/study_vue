@@ -17,9 +17,12 @@ html, body, :global(#root) {
       line-height: 40px;
       border-radius: 3px;
       text-align: center;
+      margin-top: 12px;
+      background: rgba(54,98,255);
   }
   .ipts{
       height: 35px;
+      border-color:#333;
       line-height: 35px;
   }
 .box{
@@ -34,9 +37,7 @@ html, body, :global(#root) {
     background: rgb(255, 255, 255);
     border-color: rgb(204, 204, 204);
 }
-.login-form-button{
-    height: 40px;
-}
+
 .fromBox{
     width: 358px;
     height: 213px;
@@ -45,8 +46,6 @@ html, body, :global(#root) {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* background: red; */
-    /* border: 1px solid #ccc; */
 }
 .fromBox_item:nth-child(1){
     margin-bottom: 22px;

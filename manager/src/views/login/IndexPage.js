@@ -3,23 +3,27 @@ import { connect } from 'dva';
 import styles from './IndexPage.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import "antd/dist/antd.css";
-
+import { Link } from 'dva/router';
 function IndexPage() {
+  function ChangeValue(e){
+    console.log(e)
+  }
   return (
    <div className={styles.box}>
       <Form.Item>
             <Input
+            onChange={ChangeValue}
               className={styles.ipts}
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
+              prefix={<Icon type="user" style={{ color: 'rgba(88,88,88)' }} />}
+              placeholder="请输入用户名"
             />
         </Form.Item>
         <Form.Item>
             <Input
               className={styles.ipts}
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="lock" style={{ color: 'rgba(88,88,88)' }} />}
               type="password"
-              placeholder="Password"
+              placeholder="请输入密码"
             />
         </Form.Item>
         <Form.Item>
@@ -30,7 +34,7 @@ function IndexPage() {
           </a>
           </div>
           <Button type="primary" htmlType="submit" className={styles.loginBtn}>
-            登录
+            <Link to="/home">登录</Link>
           </Button>
        
         </Form.Item>
