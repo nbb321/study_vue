@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //封装函数
+        var that=this;
+        function MyPromise(fn){
+            this.status='pending';
+            this.resolveParams='';
+            this.rejectParams='';
+            this.init();
+            fn(this.resolve,this.reject);
+        }
+        MyPromise.prototype={
+            constructor:MyPromise,
+            init(){
+                that=MyPromise.prototype;
+            },
+            resolve(params){
+                that.resolveParams=params;
+                that.status='pending';
+            },
+            reject(params){
+                that.rejectParams=params;
+                that.status='pending';
+            },
+            then(_fn){
+                if(that.resolveParams && that.status == 'pending'){
+                    _fn(that.resolveParams);
+                    that.resolveParams='';
+                    that.status='resolved'
+                }
+                return new MyPromise(()=>{})
+            },
+            catch(_fn){
+                if(that.rejectParams && that.status =='pending'){
+                    _fn(that.rejectParams);
+                    that.resolveParams='';
+                    that.status='rejected'
+                }
+            }
+        }
+
+        function loadImage(status) {
+            return new MyPromise(function(resolve, reject){
+                var image = new Image();
+                if(status==200){
+                    image.src = 'http://k.zol-img.com.cn/sjbbs/7692/a7691515_s.jpg'
+                    resolve(image);
+                }else if (status==404) {
+                    reject(new Error('Could not load image at '+url))
+                }
+                
+            })
+        }
+        loadImage(200).then(res=>{
+            document.body.appendChild(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        // function loadImg(src) {
+        //     return new Promise((resolve, reject)=> {
+        //             let img = new Image();
+        //             img.src=src;
+        //             img.onload = function(){
+        //                 resolve(img);
+        //             }
+        //             img.onerror = function (e) {
+        //                 reject(e)
+        //             }
+        //         }
+        //     )
+        //     };
+        // var url = "http://k.zol-img.com.cn/sjbbs/7692/a7691515_s.jpg";
+        // loadImg(url).then(res => {
+        //     document.body.appendChild(res); //回调成功的参数
+        // },err => {
+        //     console.log(err);
+        //回调失败的参数
+        // })
+    </script>
+</body>
+
+</html>
